@@ -15,9 +15,9 @@ public class Main {
 
         shop1.getProduct(20);
 
-        System.out.println("***************");
-
-        shop1.addOrder(30);
+//        System.out.println("***************");
+//
+//        shop1.addOrder(30);
 
         System.out.println("***************");
 

@@ -29,24 +29,43 @@ public class ShopService {
     }
 
     public void getProduct(int id){
-        System.out.println(productRepo.getProduct(id));
+        try {
+            System.out.println(productRepo.getProduct(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void listProducts(){
-        System.out.println(productRepo.list());
+        try {
+            System.out.println(productRepo.list());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addOrder(int productToOrder){
-
-        System.out.println(orderRepo.add(new Product(productToOrder, productRepo.getProduct(productToOrder))));
+        try {
+            System.out.println(orderRepo.add(new Product(productToOrder, productRepo.getProduct(productToOrder))));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void getOpenOrder(int orderNumber){
-        System.out.println(orderRepo.getProduct(orderNumber));
+        try {
+            System.out.println(orderRepo.getProduct(orderNumber));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void listOrders(){
-        System.out.println(orderRepo.list());
+        try {
+            System.out.println(orderRepo.list());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
