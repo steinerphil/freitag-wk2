@@ -13,22 +13,22 @@ public class ProductRepo {
         this.products = products;
     }
 
-    public void add(Product product){
+    public void add(Product product) {
         this.products.put(product.getId(), product.getName());
     }
 
-    public String list(){
-        StringBuilder mapAsString = new StringBuilder("{");
-        for(Integer key : products.keySet()){
-            mapAsString.append("ID: " + key + " = " + products.get(key) + ", ");
-            mapAsString.delete(mapAsString.length()-2, mapAsString.length()).append("}");
+    public String list() {
+        StringBuilder mapAsString = new StringBuilder();
+        for (Integer key : products.keySet()) {
+            mapAsString.append("ID: " + key + " = " + products.get(key) + "\n");
         }
         return mapAsString.toString();
     }
 
-    public String getProduct(int id){
+    public String getProduct(int id) {
         //TODO implement exception
-       return products.get(id);
+        return products.get(id);
     }
+
 
 }

@@ -1,22 +1,31 @@
 package Main;
-
-import Repo.ProductRepo;
-import Product.Product;
-import java.util.HashMap;
+import ShopService.ShopService;
 
 public class Main {
 
 
     public static void main(String[] args) {
 
-        //filling the product repo
-        ProductRepo productRepo = new ProductRepo(new HashMap<>());
-        productRepo.add(new Product(10, "Milk"));
-        productRepo.add(new Product(20, "Oat"));
-        productRepo.add(new Product(30, "Beer"));
-        productRepo.add(new Product(40, "Bread"));
+        //create shopService
+        ShopService shop1 = new ShopService();
 
+        shop1.listProducts();
 
+        System.out.println("***************");
+
+        shop1.getProduct(20);
+
+        System.out.println("***************");
+
+        shop1.addOrder(30);
+
+        System.out.println("***************");
+
+        shop1.listOrders();
+
+        System.out.println("***************");
+
+        shop1.getOpenOrder(1);
 
     }
 
