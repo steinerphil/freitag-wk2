@@ -1,19 +1,23 @@
 package ShopService;
 
-import Product.Product;
+import Repo.OrderRepo;
+import Repo.ProductRepo;
 
 public class ShopService {
 
 
-    public static void main(String[] args) {
-
-        Product productInit = new Product();
-
-        productInit.initProducts();
 
 
-
-
-    }
+//    public String getProduct(int id){
+//       return productRepo.getProduct(id);
+//    }
+//
+//    public String listProducts(){
+//        return productRepo.list();
+//    }
+//
+//    public void addOrder(String productToOrder){
+//
+//    }
 
 }

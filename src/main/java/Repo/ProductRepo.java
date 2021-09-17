@@ -1,24 +1,34 @@
 package Repo;
+
 import Product.Product;
 
-import java.util.List;
+import java.util.*;
+
 
 public class ProductRepo {
 
-    private List<Product> products;
+    private final Map<Integer, String> products;
 
-    //Constructor
-    public ProductRepo(){
-        this.products =
+    public ProductRepo(HashMap<Integer, String> products) {
+        this.products = products;
     }
-    public ProductRepo(List<Product> products) {this.products = products;}
 
-
-    //methods
-    public List<Product> list() {return products;}
-
-    public Product getProductById(int id){
-
-        return products.get(id);
+    public void add(Product product){
+        this.products.put(product.getId(), product.getName());
     }
+
+    public String list(){
+        StringBuilder mapAsString = new StringBuilder("{");
+        for(Integer key : products.keySet()){
+            mapAsString.append("ID: " + key + " = " + products.get(key) + ", ");
+            mapAsString.delete(mapAsString.length()-2, mapAsString.length()).append("}");
+        }
+        return mapAsString.toString();
+    }
+
+    public String getProduct(int id){
+        //TODO implement exception
+       return products.get(id);
+    }
+
 }
