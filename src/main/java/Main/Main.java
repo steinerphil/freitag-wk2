@@ -1,4 +1,5 @@
 package Main;
+
 import ShopService.ShopService;
 
 public class Main {
@@ -9,23 +10,12 @@ public class Main {
         //create shopService
         ShopService shop1 = new ShopService();
 
-        shop1.listProducts();
-
-        System.out.println("***************");
-
-        shop1.getProduct(20);
-
-//        System.out.println("***************");
-//
-//        shop1.addOrder(30);
-
-        System.out.println("***************");
-
+//        shop1.listProducts();
+//        shop1.getProduct(10);
+        shop1.addOrder(new int[]{10, 20, 10});
+        shop1.addOrder(new int[]{10});
         shop1.listOrders();
-
-        System.out.println("***************");
-
-        shop1.getOpenOrder(1);
+//        shop1.getOpenOrder(1);
 
     }
 

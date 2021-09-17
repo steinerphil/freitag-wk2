@@ -3,6 +3,7 @@ package Repo;
 import Product.Product;
 
 import java.util.*;
+import Exception.*;
 
 
 public class ProductRepo {
@@ -13,20 +14,24 @@ public class ProductRepo {
         this.products = products;
     }
 
-    public void add(Product product) {
-        this.products.put(product.getId(), product.getName());
-    }
-
     public String list() {
-        StringBuilder mapAsString = new StringBuilder();
-        for (Integer key : products.keySet()) {
-            mapAsString.append("ID: " + key + " = " + products.get(key) + "\n");
+        String r = "";
+        if(products.size() == 0){
+            r = "Product Repo is empty";
+        } else {
+            StringBuilder mapAsString = new StringBuilder();
+            for (Integer key : products.keySet()) {
+                mapAsString.append("ID: " + key + " = " + products.get(key) + "\n");
+            }
+            r = mapAsString.toString();
         }
-        return mapAsString.toString();
+        return r;
     }
 
-    public String getProduct(int id) {
-        //TODO implement exception
+    public String getProduct(int id) throws CanNotFindProduct {
+        if(!products.containsKey(id)){
+            throw new CanNotFindProduct("The product does not exist. Product id: " + id);
+        }
         return products.get(id);
     }
 

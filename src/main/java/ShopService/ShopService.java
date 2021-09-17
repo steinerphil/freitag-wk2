@@ -44,10 +44,18 @@ public class ShopService {
         }
     }
 
-    public void addOrder(int productToOrder){
+    // add order and build product array from that
+    // add th product array to orderRepo
+    public void addOrder(int[] productToOrder){
         try {
-            System.out.println(orderRepo.add(new Product(productToOrder, productRepo.getProduct(productToOrder))));
-        } catch (Exception e) {
+            Product[] productsArray = new Product[productToOrder.length];
+            for(int i = 0; i < productToOrder.length; i++){
+                Product product = new Product(productToOrder[i], productRepo.getProduct(productToOrder[i]));
+                productsArray[i] = product;
+            }
+            System.out.println(orderRepo.add(productsArray));
+            }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
