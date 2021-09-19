@@ -1,14 +1,14 @@
 package Order;
 
-import Product.Product;
+import Product.Grocery;
 
 public class Order {
 
     int id;
-    Product product;
+    Grocery product;
 
 
-    public Order(int id, Product product) {
+    public Order(int id, Grocery product) {
         this.id = id;
         this.product = product;
     }

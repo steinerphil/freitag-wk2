@@ -1,7 +1,6 @@
 package Repo;
 
-import Order.Order;
-import Product.Product;
+import Product.Grocery;
 
 import java.util.*;
 
@@ -9,10 +8,10 @@ import Exception.*;
 
 public class OrderRepo {
 
-    Map<Integer, Product[]> orders = new HashMap<>();
+    Map<Integer, Grocery[]> orders = new HashMap<>();
     private int orderNumber = 0;
 
-    public OrderRepo(HashMap<Integer, Product[]> orders) {
+    public OrderRepo(HashMap<Integer, Grocery[]> orders) {
         this.orders = orders;
     }
 
@@ -31,11 +30,11 @@ public class OrderRepo {
         return "Product(s) to order " + orderNumber + " is/are " + Arrays.toString(orders.get(orderNumber));
     }
 
-    public String add(Product[] productToOrder) {
+    public String add(Grocery[] productToOrder) {
         StringBuilder r = new StringBuilder();
         orderNumber++;
         orders.put(orderNumber, productToOrder);
-        for (Product p : productToOrder
+        for (Grocery p : productToOrder
         ) {
             r.append((p.getName())).append(", ");
         }
@@ -44,7 +43,7 @@ public class OrderRepo {
     }
 
     public String list() {
-        Product[] t;
+        Grocery[] t;
         StringBuilder r = new StringBuilder("");
         if (orders.size() == 0) {
             r = new StringBuilder("List is empty");
@@ -53,7 +52,7 @@ public class OrderRepo {
             for (Integer key : orders.keySet()) {
                 r = mapAsString.append("Order-ID: " + key + " = ");
                 t = orders.get(key);
-                for (Product pr: t
+                for (Grocery pr: t
                 ) {
                     r.append(pr.getName()).append(", ");
                 }

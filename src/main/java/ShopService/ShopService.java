@@ -1,14 +1,9 @@
 package ShopService;
-import Main.*;
 import Repo.OrderRepo;
 import Repo.ProductRepo;
-import Repo.OrderRepo;
-import Repo.ProductRepo;
-import Product.Product;
+import Product.Grocery;
 import java.util.HashMap;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ShopService {
@@ -48,9 +43,9 @@ public class ShopService {
     // add th product array to orderRepo
     public void addOrder(int[] productToOrder){
         try {
-            Product[] productsArray = new Product[productToOrder.length];
+            Grocery[] productsArray = new Grocery[productToOrder.length];
             for(int i = 0; i < productToOrder.length; i++){
-                Product product = new Product(productToOrder[i], productRepo.getProduct(productToOrder[i]));
+                Grocery product = new Grocery(productToOrder[i], productRepo.getProduct(productToOrder[i]));
                 productsArray[i] = product;
             }
             System.out.println(orderRepo.add(productsArray));

@@ -1,19 +1,21 @@
 package Product;
 
-public class Product {
+public class Grocery implements ProductInterface {
 
     int id;
     String name;
 
-    public Product(int id, String name) {
+    public Grocery(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
