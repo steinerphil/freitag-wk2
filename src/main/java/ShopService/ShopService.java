@@ -1,31 +1,28 @@
 package ShopService;
+import Product.ProductInterface;
 import Repo.OrderRepo;
 import Repo.ProductRepo;
 import Product.Grocery;
+
+import java.util.Arrays;
 import java.util.HashMap;
 
 import java.util.Map;
 
 public class ShopService {
 
-    //create and filling the product repo field
-    ProductRepo productRepo = new ProductRepo(new HashMap<>(Map.ofEntries(
-            Map.entry(10, "Milk"),
-            Map.entry(20, "Oat"),
-            Map.entry(30, "Beer"),
-            Map.entry(40, "Bread")
-    )));
+    //create order repo and product repo instance
+    private final OrderRepo orderRepo = new OrderRepo();
+    private final ProductRepo productRepo = new ProductRepo();
 
-    //create order repo field
-    OrderRepo orderRepo = new OrderRepo();
 
-    //create empty constructor
+    //empty constructor
     public ShopService() {
     }
 
     public void getProduct(int id){
         try {
-            System.out.println(productRepo.getProduct(id));
+            System.out.println(productRepo.getProduct(id).getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,11 +40,11 @@ public class ShopService {
     // add th product array to orderRepo
     public void addOrder(int[] productToOrder){
         try {
-            Grocery[] productsArray = new Grocery[productToOrder.length];
+            ProductInterface[] productsArray = new ProductInterface[productToOrder.length];
             for(int i = 0; i < productToOrder.length; i++){
-                Grocery product = new Grocery(productToOrder[i], productRepo.getProduct(productToOrder[i]));
-                productsArray[i] = product;
+                productsArray[i] = productRepo.getProduct(productToOrder[i]);
             }
+            //sout for display massage from add() method in order repo
             System.out.println(orderRepo.add(productsArray));
             }
         catch (Exception e) {
@@ -55,9 +52,9 @@ public class ShopService {
         }
     }
 
-    public void getOpenOrder(int orderNumber){
+    public void getOrder(int orderNumber){
         try {
-            System.out.println(orderRepo.getProduct(orderNumber));
+            System.out.println("Order " + orderNumber + " contains " + orderRepo.getProductToOrder(orderNumber));
         } catch (Exception e) {
             e.printStackTrace();
         }

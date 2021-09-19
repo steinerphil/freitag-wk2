@@ -1,65 +1,76 @@
 package Repo;
 
+import Order.Order;
 import Product.Grocery;
-
 import java.util.*;
-
 import Exception.*;
+import Product.ProductInterface;
 
 public class OrderRepo {
 
-    Map<Integer, Grocery[]> orders = new HashMap<>();
-    private int orderNumber = 0;
 
-    public OrderRepo(HashMap<Integer, Grocery[]> orders) {
+    //fields
+    Map<Integer, Order> orders = new HashMap<>();
+    private int orderNumber = 0;
+    private final ProductRepo productRepo = new ProductRepo();
+
+    //constructors
+    public OrderRepo(HashMap<Integer, Order> orders) {
         this.orders = orders;
     }
 
     public OrderRepo() {
     }
 
+    //methods
     @Override
     public String toString() {
         return "order= " + orders;
     }
 
-    public String getProduct(int orderNumber) throws CanNotFindProduct {
+    public String getProductToOrder(int orderNumber) throws CanNotFindProduct {
         if (!orders.containsKey(orderNumber)) {
             throw new CanNotFindProduct("Error: can not find product to given order-number: " + orderNumber);
         }
-        return "Product(s) to order " + orderNumber + " is/are " + Arrays.toString(orders.get(orderNumber));
-    }
-
-    public String add(Grocery[] productToOrder) {
         StringBuilder r = new StringBuilder();
-        orderNumber++;
-        orders.put(orderNumber, productToOrder);
-        for (Grocery p : productToOrder
+        for (ProductInterface p : orders.get(orderNumber).getProduct()
         ) {
             r.append((p.getName())).append(", ");
         }
-        r.append("was added. Your order Number: " + orderNumber);
+        r.delete(r.length()-2, r.length()); //removing last comma
+        return r.toString();
+    }
+
+    public String add(ProductInterface[] productsToOrder) {
+        StringBuilder r = new StringBuilder();
+        orderNumber++;
+        orders.put(orderNumber, new Order(orderNumber, productsToOrder));
+        for (ProductInterface p : productsToOrder
+        ) {
+            r.append((p.getName())).append(", ");
+        }
+        r.delete(r.length()-2, r.length()); // removing last comma
+        r.append(" was added. Your order Number: " + orderNumber);
         return r.toString();
     }
 
     public String list() {
-        Grocery[] t;
-        StringBuilder r = new StringBuilder("");
+        ProductInterface[] productArray = new ProductInterface[orders.size()];
+        StringBuilder stringBuilder = new StringBuilder();
         if (orders.size() == 0) {
-            r = new StringBuilder("List is empty");
+            stringBuilder.append("List is empty");
         } else {
-            StringBuilder mapAsString = new StringBuilder();
+//            StringBuilder mapAsString = new StringBuilder();
             for (Integer key : orders.keySet()) {
-                r = mapAsString.append("Order-ID: " + key + " = ");
-                t = orders.get(key);
-                for (Grocery pr: t
-                ) {
-                    r.append(pr.getName()).append(", ");
+                stringBuilder.append("Order-ID: " + key + " = ");
+                for (ProductInterface pr: orders.get(key).getProduct()) {
+                    stringBuilder.append(pr.getName()).append(", ");
                 }
-                r.append("\n");
+                stringBuilder.delete(stringBuilder.length()-2, stringBuilder.length());
+                stringBuilder.append("\n");
             }
         }
-        return r.toString();
+        return stringBuilder.toString();
     }
 
 }

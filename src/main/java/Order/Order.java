@@ -1,16 +1,24 @@
 package Order;
 
 import Product.Grocery;
+import Product.ProductInterface;
 
 public class Order {
 
     int id;
-    Grocery product;
+    ProductInterface[] product;
 
 
-    public Order(int id, Grocery product) {
+    public Order(int id, ProductInterface[] product) {
         this.id = id;
         this.product = product;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public ProductInterface[] getProduct() {
+        return product;
+    }
 }
