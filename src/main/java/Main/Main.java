@@ -10,6 +10,10 @@ public class Main {
         //create shopService
         ShopService shop1 = new ShopService();
 
+        shop1.enterShop();
+
+
+
 //        shop1.listProducts();
 //        shop1.getProduct(10);
 //        shop1.addOrder(new int[]{10});
