@@ -48,15 +48,14 @@ public class ShopService {
                 case 3 -> {
                     System.out.println("choose products, id's required (separate with comma) : ");
                     String arr = scanner.next();
-                    String[] items = arr.replaceAll("\\s", "").replaceAll(" ", "").split(",");
+                    String[] items = arr.split(",");
                     int[] results = new int[items.length];
                     for (int i = 0; i < items.length; i++) {
                         try {
                             results[i] = Integer.parseInt(items[i]);
                         } catch (NumberFormatException e) {
-                            System.out.println("Wrong format, please type your ids like this: 1, 2, 3");
+                            System.out.println("Wrong format, please type your ids like this: 1,2,3");
                         }
-                        ;
                     }
                     addOrder(results);
                 }
