@@ -3,16 +3,6 @@ package ShopService;
 import Product.ProductInterface;
 import Repo.OrderRepo;
 import Repo.ProductRepo;
-import Product.Grocery;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashMap;
-
-import java.util.Map;
 import java.util.Scanner;
 
 public class ShopService {
@@ -20,12 +10,10 @@ public class ShopService {
     //create order repo and product repo instance
     private final OrderRepo orderRepo = new OrderRepo();
     private final ProductRepo productRepo = new ProductRepo();
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
 
     //empty constructor
-    public ShopService() {
-    }
 
     //start shop session
     public void enterShop() {
@@ -41,7 +29,6 @@ public class ShopService {
                 case 1 -> listProducts();
                 case 2 -> {
                     System.out.println("Which product id?");
-                    //scanner.hasNext();
                     int id = scanner.nextInt();
                     getProduct(id);
                 }
@@ -53,8 +40,8 @@ public class ShopService {
                     for (int i = 0; i < items.length; i++) {
                         try {
                             results[i] = Integer.parseInt(items[i]);
-                        } catch (NumberFormatException e) {
-                            System.out.println("Wrong format, please type your ids like this: 1,2,3");
+                        } catch (Exception e) {
+                            System.err.println("Wrong format, please type your ids like this: 1,2,3");
                         }
                     }
                     addOrder(results);
